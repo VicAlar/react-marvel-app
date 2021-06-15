@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getCharactersAction } from "../../actions/dataActions";
 
+
 const Grid = styled.div`
   overflow: hidden;
   display: grid;
@@ -40,6 +41,7 @@ const Grid = styled.div`
 `;
 
 const Layout = () => {
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,14 +51,13 @@ const Layout = () => {
     //eslint-disable-next-line
   }, []);
 
-  const characters = useSelector((state) => state.personajes.personajes )
+  const characters = useSelector((state) => state.personajes.personajes );
+  const filterChar = useSelector((state) => state.personajes.personajesFilt );
 
   return (
     <div>
       <Grid>
-        {characters.length === 0 ? (
-            <div>No hay Personajes</div>
-        ) : (
+        {characters.length === 0 ? null : (
             characters[0].map( personaje => (
                 <Card 
                     key={personaje.id}
@@ -65,6 +66,16 @@ const Layout = () => {
                 />
             ))
         )}
+
+        {filterChar.length > 0 ? (
+            filterChar[0].map( per => (
+                <Card 
+                    key={per.id}
+                    imgurl={`${per.thumbnail.path}.${per.thumbnail.extension}`}
+                    name={per.name}
+                />
+            ))
+        ) : null}
       </Grid>
     </div>
   );

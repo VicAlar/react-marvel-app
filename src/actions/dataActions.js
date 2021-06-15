@@ -1,7 +1,11 @@
 import {
     OBTENER_DATA,
     OBTENER_DATA_EXITO,
-    OBTENER_DATA_ERROR
+    OBTENER_DATA_ERROR,
+    OBTENER_SEARCH_TERM,
+    FILTRAR_BUSQUEDA,
+    FILTRAR_BUSQUEDA_EXITO,
+    FILTRAR_BUSQUEDA_ERROR
 } from '../types';
 
 import clienteAxios from '../api/axios';
@@ -49,4 +53,53 @@ const getCharacterSuccess = (res) => ({
 
 const getCharactersError = () => ({
     type: OBTENER_DATA_ERROR
+});
+
+export function getSearchTermAction(term) {
+    return (dispatch) => {
+        dispatch(getSearchTerm(term));
+    }
+}
+
+const getSearchTerm = (term) => ({
+    type: OBTENER_SEARCH_TERM,
+    payload: term
+});
+
+export function filterSearchAction(term) {
+    return async (dispatch) => {
+        dispatch(filterSearch())
+
+        try {
+            await clienteAxios.get(`characters?nameStartsWith=${term}`, {
+                params: {
+                    'apikey': publicKey,
+                    'ts': ts,
+                    'hash': hash,
+                    'limit': '12',               
+                }
+            }).then((response) => {
+                const res = response.data.data.results;
+
+                dispatch( filterCharactersSuccess(res));
+            });
+        } catch (error) {
+            console.log(error);
+            dispatch ( filterCharactersError())
+        }
+    }
+}
+
+const filterSearch = () => ({
+    type: FILTRAR_BUSQUEDA,
+    payload: true
 })
+
+const filterCharactersSuccess = (res) => ({
+    type: FILTRAR_BUSQUEDA_EXITO,
+    payload: res
+});
+
+const filterCharactersError = () => ({
+    type: FILTRAR_BUSQUEDA_ERROR
+});
