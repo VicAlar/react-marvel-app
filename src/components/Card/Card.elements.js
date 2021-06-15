@@ -42,4 +42,5 @@ export const CardText = styled.h2`
     position: absolute;
     bottom: 15px;
     left: 10px;
+    -webkit-text-stroke: 1px black;
 `; 

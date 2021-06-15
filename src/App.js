@@ -9,8 +9,7 @@ function App() {
   return (
     <Provider store={store}>
       <Navbar />
-      
-      <Layout /> 
+      <Layout />
     </Provider>
   );
 }
