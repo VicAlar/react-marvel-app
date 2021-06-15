@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Nav, Logo, InputContainer, SearchIcon, TextInput, StarIcon } from './Navbar.elements';
 
-
 const Navbar = () => {
+
+    //State para la busqueda del input
+
+    const [searchTerm, setSearchTerm] = useState('');
+
     return ( 
         <>
             <Nav>
@@ -11,6 +15,8 @@ const Navbar = () => {
                     <SearchIcon />
                     <TextInput 
                         placeholder="Buscar"
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
                     />
                 </InputContainer>
                 <StarIcon />
