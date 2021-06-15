@@ -1,10 +1,14 @@
-
+import Layout from './components/Layout/Layout';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
-    <div>
-      <h1>Marvel App</h1>
-    </div>
+    <>
+      <Navbar />
+      
+      <Layout />
+      
+    </>
   );
 }
 
