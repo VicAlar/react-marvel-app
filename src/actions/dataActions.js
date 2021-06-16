@@ -5,7 +5,10 @@ import {
     OBTENER_SEARCH_TERM,
     FILTRAR_BUSQUEDA,
     FILTRAR_BUSQUEDA_EXITO,
-    FILTRAR_BUSQUEDA_ERROR
+    FILTRAR_BUSQUEDA_ERROR,
+    OBTENER_PERSONAJE,
+    OBTENER_COMIC_ERROR,
+    OBTENER_COMIC_EXITO
 } from '../types';
 
 import clienteAxios from '../api/axios';
@@ -18,7 +21,7 @@ const { ts, hash, publicKey } = Secrets;
 export function getCharactersAction() {
     return async (dispatch) => {
         dispatch(getCharacters()); 
-        const o = Math.floor(Math.random() * 500);;
+        const o = Math.floor(Math.random() * 500);
 
         try {
             await clienteAxios.get('/characters?orderBy=modified', {
@@ -68,7 +71,7 @@ const getSearchTerm = (term) => ({
 
 export function filterSearchAction(term) {
     return async (dispatch) => {
-        dispatch(filterSearch())
+        dispatch(filterSearch());
 
         try {
             await clienteAxios.get(`characters?nameStartsWith=${term}`, {
@@ -85,7 +88,7 @@ export function filterSearchAction(term) {
             });
         } catch (error) {
             console.log(error);
-            dispatch ( filterCharactersError())
+            dispatch ( filterCharactersError());
         }
     }
 }
@@ -93,7 +96,7 @@ export function filterSearchAction(term) {
 const filterSearch = () => ({
     type: FILTRAR_BUSQUEDA,
     payload: true
-})
+});
 
 const filterCharactersSuccess = (res) => ({
     type: FILTRAR_BUSQUEDA_EXITO,
@@ -102,4 +105,40 @@ const filterCharactersSuccess = (res) => ({
 
 const filterCharactersError = () => ({
     type: FILTRAR_BUSQUEDA_ERROR
+});
+
+export function getCharacterIdAction(personaje) {
+    return async (dispatch) => {
+        dispatch( getId(personaje));
+
+        try {
+            await clienteAxios.get(`characters/${personaje.id}/comics?orderBy=focDate`, {
+                params: {
+                    'apikey': publicKey,
+                    'ts': ts,
+                    'hash': hash               
+                }
+            }).then((response) => {
+                const res = response.data.data.results;
+                dispatch( getComicsSucces(res));
+            });
+        } catch (error) {
+            console.log(error);
+            dispatch( getComicsError());
+        }
+    }
+}
+
+const getId = (personaje) => ({
+    type: OBTENER_PERSONAJE,
+    payload: personaje
+});
+
+const getComicsSucces = res => ({
+    type: OBTENER_COMIC_EXITO,
+    payload: res
+});
+
+const getComicsError = res => ({
+    type: OBTENER_COMIC_ERROR
 });
