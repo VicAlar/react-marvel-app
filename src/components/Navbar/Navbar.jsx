@@ -20,8 +20,6 @@ const Navbar = () => {
         }
     }, [searchTerm, dispatch])
 
-
-
     return ( 
         <>
             <Nav>
