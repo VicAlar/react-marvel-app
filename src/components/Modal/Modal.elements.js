@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
-import { BsStar, BsStarFill } from "react-icons/bs";
+import { BsStarFill } from "react-icons/bs";
 
 export const Background = styled.div`
     width: 100%;
@@ -79,7 +79,6 @@ export const ModalImg = styled.div`
 
 export const ModalContent = styled.div`
     overflow-y: scroll;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,9 +120,12 @@ export const ComicsList = styled.li`
         margin-left: 25px;
     }
 
+    @media (max-width: 320px) {
+        margin-left: 50px;
+    }
+
     @media (max-width: 280px) {
         font-size: .7rem;
-        margin-left: 50px;
     }
 `; 
 
@@ -140,17 +142,6 @@ export const CloseModalIcon = styled(AiOutlineClose)`
     @media (max-width: 580px) {
         color: #FFF;
     }
-`;
-
-export const FavIcon = styled(BsStar)`
-    cursor: pointer;
-    position: absolute;
-    top: 8px;
-    left: 20px;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    z-index: 10;
 `;
 
 export const FavIconFill = styled(BsStarFill)`

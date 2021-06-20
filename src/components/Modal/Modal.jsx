@@ -9,13 +9,26 @@ import {
   Lista,
   Description,
   ComicsList,
-  FavIconFill
+  FavIconFill,
 } from "./Modal.elements";
 
-const Modal = ({ showModal, setShowModal, perSelect, comics }) => {
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  addFavoriteAction,
+  removeFavoriteAction,
+} from "../../actions/dataActions";
+
+const Modal = ({ showModal, setShowModal, comics }) => {
+  const dispatch = useDispatch();
   const modalRef = useRef();
 
-  const comicsAr = comics[0];
+  const perSelect = useSelector((state) => state.personajes.personajeSelect);
+  const favorites = useSelector((state) => state.personajes.personajesFav);
+
+  let storeChar = favorites.find((o) => o.id === perSelect.id);
+
+  const changeColor = storeChar ? "#FFC700" : "#63500d";
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
@@ -28,10 +41,19 @@ const Modal = ({ showModal, setShowModal, perSelect, comics }) => {
       {showModal ? (
         <Background ref={modalRef} onClick={closeModal}>
           <ModalWrapper>
-            <FavIconFill 
-                fill='rgb(153, 130, 49)'
-                stroke='#000000'
-            />
+            {storeChar ? (
+              <FavIconFill
+                fill={changeColor}
+                stroke="#dfc0c0"
+                onClick={() => dispatch(removeFavoriteAction(perSelect))}
+              />
+            ) : (
+              <FavIconFill
+                fill={changeColor}
+                stroke="#000"
+                onClick={() => dispatch(addFavoriteAction(perSelect))}
+              />
+            )}
             <ModalImg
               imgurl={`${perSelect.thumbnail.path}.${perSelect.thumbnail.extension}`}
             />
@@ -45,9 +67,9 @@ const Modal = ({ showModal, setShowModal, perSelect, comics }) => {
               <h2>Lista de Comics</h2>
               <Lista>
                 {comics.length === 0 ? (
-                  <ComicsList>No hay comcis disponibles</ComicsList>
+                  <ComicsList key="1">No hay Comics disponibles</ComicsList>
                 ) : (
-                  comicsAr.map((comic) => (
+                  comics[0].map((comic) => (
                     <ComicsList key={comic.id}>
                       <p>{comic.title}</p>
                     </ComicsList>

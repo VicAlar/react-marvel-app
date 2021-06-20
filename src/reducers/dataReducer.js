@@ -8,8 +8,12 @@ import {
     FILTRAR_BUSQUEDA_ERROR,
     OBTENER_PERSONAJE,
     OBTENER_COMIC_ERROR,
-    OBTENER_COMIC_EXITO
+    OBTENER_COMIC_EXITO,
+    ADD_FAV,
+    REMOVE_FAV
 } from '../types';
+
+const FavFromLocalStorage = JSON.parse(localStorage.getItem('favorites') || '[]');
 
 // State inicial del reducer
 
@@ -17,8 +21,9 @@ const initialState = {
     busqueda: '',
     personajes: [],
     personajesFilt: [],
-    personajeSelect: null,
+    personajeSelect: {},
     comics: [],
+    personajesFav: FavFromLocalStorage,
     loading: false,
     error: null
 }
@@ -68,6 +73,15 @@ export const dataReducer = (state = initialState, action) => {
                 ...state,
                 comics: [...state.comics, action.payload]
             }
+        case ADD_FAV:
+            return {
+                ...state,
+                personajesFav: [action.payload, ...state.personajesFav]
+            }
+        case REMOVE_FAV:
+            return {
+                ...state,
+                personajesFav: state.personajesFav.filter(favorite => favorite.id !== action.payload.id)           }
         default:
             return state;
     }

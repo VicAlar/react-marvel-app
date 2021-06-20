@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BsStar, BsSearch } from "react-icons/bs";
+import { BsStar, BsStarFill, BsSearch } from "react-icons/bs";
 import { ReactComponent as Icon } from "../../images/marvel-logo.svg";
 
 export const Nav = styled.nav`
@@ -64,6 +64,17 @@ export const TextInput = styled.input`
 `;
 
 export const StarIcon = styled(BsStar)`
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  color: black;
+
+  @media (max-width: 1200px) {
+    margin-right: 10px;
+  }
+`;
+
+export const StarIconFill = styled(BsStarFill)`
   width: 30px;
   height: 30px;
   margin-left: 20px;
