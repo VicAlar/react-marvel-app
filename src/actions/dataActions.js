@@ -32,7 +32,7 @@ export function getCharactersAction() {
                     'ts': ts,
                     'hash': hash,
                     'offset': o,
-                    'limit': '8',               
+                    'limit': '12',               
                 }
             }).then((response) => {
                 const res = response.data.data.results;

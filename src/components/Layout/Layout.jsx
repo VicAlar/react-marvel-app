@@ -36,7 +36,7 @@ const Layout = () => {
   }, [favorites]);
 
   //Funcion que abre el modal
-  const openModal = (e, id) => {
+  const openModal = () => {
     setShowModal((isOpen) => !isOpen);
   };
 

@@ -19,3 +19,7 @@ export const Grid = styled.div`
     display: block;
   }
 `;
+
+export const Msg = styled.p`
+  text-align: center;
+`;
