@@ -8,7 +8,9 @@ import {
     FILTRAR_BUSQUEDA_ERROR,
     OBTENER_PERSONAJE,
     OBTENER_COMIC_ERROR,
-    OBTENER_COMIC_EXITO
+    OBTENER_COMIC_EXITO,
+    ADD_FAV,
+    REMOVE_FAV
 } from '../types';
 
 import clienteAxios from '../api/axios';
@@ -64,6 +66,8 @@ export function getSearchTermAction(term) {
     }
 }
 
+//Filtrar busqueda
+
 const getSearchTerm = (term) => ({
     type: OBTENER_SEARCH_TERM,
     payload: term
@@ -107,12 +111,15 @@ const filterCharactersError = () => ({
     type: FILTRAR_BUSQUEDA_ERROR
 });
 
+
+//Obtener el personaje para el modal y sus comics
+
 export function getCharacterIdAction(personaje) {
     return async (dispatch) => {
         dispatch( getId(personaje));
 
         try {
-            await clienteAxios.get(`characters/${personaje.id}/comics?orderBy=focDate`, {
+            await clienteAxios.get(`characters/${personaje.id}/comics?orderBy=onsaleDate`, {
                 params: {
                     'apikey': publicKey,
                     'ts': ts,
@@ -139,6 +146,32 @@ const getComicsSucces = res => ({
     payload: res
 });
 
-const getComicsError = res => ({
+const getComicsError = () => ({
     type: OBTENER_COMIC_ERROR
+});
+
+//Añadir a favoritos
+
+export function addFavoriteAction(personaje) {
+    return (dispatch) => {
+        dispatch( addFavorite(personaje));
+    }
+}
+
+const addFavorite = (personaje) => ({
+    type: ADD_FAV,
+    payload: personaje
+});
+
+//Remover de favoritos
+
+export function removeFavoriteAction(personaje) {
+    return (dispatch) => {
+        dispatch( removeFavorite(personaje));
+    }
+}
+
+const removeFavorite = (personaje) => ({
+    type: REMOVE_FAV,
+    payload: personaje
 });

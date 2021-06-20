@@ -1,14 +1,13 @@
 import React from "react";
-import { CardContainer, CardImage, CardText, FavIcon } from "./Card.elements";
+import { CardContainer, CardImage, CardText } from "./Card.elements";
 
-const Card = ({ imgurl, name, fav, openModal }) => {
+const Card = ({ imgurl, name, openModal }) => {
 
   return (
     <>
       <CardContainer>
         <CardImage imgurl={imgurl} onClick={openModal}>
           <CardText>{name}</CardText>
-          <FavIcon />
         </CardImage>
       </CardContainer>
     </>
