@@ -55,7 +55,7 @@ const Modal = ({ showModal, setShowModal, comics }) => {
               />
             )}
             <ModalImg
-              imgurl={`${perSelect.thumbnail.path}.${perSelect.thumbnail.extension}`}
+              imgurl={`${perSelect.thumbnail.path.replace('http', 'https')}.${perSelect.thumbnail.extension}`}
             />
             <ModalContent>
               <NamePer>{perSelect.name}</NamePer>

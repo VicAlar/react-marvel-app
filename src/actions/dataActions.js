@@ -36,7 +36,7 @@ export function getCharactersAction() {
                 }
             }).then((response) => {
                 const res = response.data.data.results;
-
+                
                 dispatch( getCharacterSuccess(res));
             });
         } catch (error) {

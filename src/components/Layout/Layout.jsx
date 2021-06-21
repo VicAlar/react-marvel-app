@@ -58,7 +58,7 @@ const Layout = () => {
           : characters[0].map((personaje) => (
               <div onClick={() => selectPer(personaje)} key={personaje.id}>
                 <Card
-                  imgurl={`${personaje.thumbnail.path}.${personaje.thumbnail.extension}`}
+                  imgurl={`${personaje.thumbnail.path.replace('http', 'https')}.${personaje.thumbnail.extension}`}
                   name={personaje.name}
                   openModal={openModal}
                 />
@@ -69,7 +69,7 @@ const Layout = () => {
           ? filterChar[0].map((per) => (
               <div onClick={() => selectPer(per)} key={per.id}>
                 <Card
-                  imgurl={`${per.thumbnail.path}.${per.thumbnail.extension}`}
+                  imgurl={`${per.thumbnail.path.replace('http', 'https')}.${per.thumbnail.extension}`}
                   name={per.name}
                   openModal={openModal}
                   fav={favorites}
