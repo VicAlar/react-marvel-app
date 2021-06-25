@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import {
   Nav,
   Logo,
+  Marvel,
   InputContainer,
   SearchIcon,
   TextInput,
   StarIcon,
   StarIconFill,
 } from "./Navbar.elements";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import {
@@ -41,9 +42,9 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <Link to="/">
-          <Logo />
-        </Link>
+        <Logo to="/">
+          <Marvel />
+        </Logo>
 
         <InputContainer>
           <SearchIcon />

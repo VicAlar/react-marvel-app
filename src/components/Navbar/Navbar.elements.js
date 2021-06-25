@@ -1,22 +1,28 @@
 import styled from "styled-components";
 import { BsStar, BsStarFill, BsSearch } from "react-icons/bs";
 import { ReactComponent as Icon } from "../../images/marvel-logo.svg";
+import {Link} from 'react-router-dom';
 
 export const Nav = styled.nav`
   background-color: #fff;
   height: 70px;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem calc((100vw - 1200px) / 2);
+  padding: 1rem;
   z-index: 10;
   align-items: center;
   border-bottom: 1px solid #dbd7d7;
 `;
 
-export const Logo = styled(Icon)`
+export const Logo = styled(Link)`
+  
+`;
+
+export const Marvel = styled(Icon)`
   margin-right: 20px;
   width: 80px;
   height: 80px;
+  justify-self: flex-start;
 
   @media (max-width: 1200px) {
     margin-left: 10px;
@@ -28,9 +34,8 @@ export const InputContainer = styled.div`
   position: relative;
   margin-right: 5px;
   padding: 5px;
-  border: 1px solid;
-  border-radius: 5px;
-  width: 75%;
+  width: 100%;
+  border-left: 0.5px solid #e2e2e2;
 
   &:hover {
     box-shadow: 1px 1px 1px thistle;

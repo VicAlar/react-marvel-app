@@ -56,23 +56,22 @@ const Layout = () => {
         {characters.length === 0
           ? null
           : characters[0].map((personaje) => (
-              <div onClick={() => selectPer(personaje)} key={personaje.id}>
+              <div key={personaje.id}>
                 <Card
-                  imgurl={`${personaje.thumbnail.path.replace('http', 'https')}.${personaje.thumbnail.extension}`}
-                  name={personaje.name}
+                  per={personaje}
                   openModal={openModal}
+                  selectPer={selectPer}
                 />
               </div>
             ))}
 
         {filterChar.length > 0
           ? filterChar[0].map((per) => (
-              <div onClick={() => selectPer(per)} key={per.id}>
+              <div key={per.id}>
                 <Card
-                  imgurl={`${per.thumbnail.path.replace('http', 'https')}.${per.thumbnail.extension}`}
-                  name={per.name}
+                  per={per}
                   openModal={openModal}
-                  fav={favorites}
+                  selectPer={selectPer}
                 />
               </div>
             ))

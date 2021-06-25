@@ -47,11 +47,10 @@ const Fav = () => {
       ) : (
         <Grid>
           {favorites.map((fav) => (
-          <div onClick={() => selectPer(fav)} key={fav.id}>
+          <div key={fav.id}>
             <Card
-              key={fav.id}
-              imgurl={`${fav.thumbnail.path}.${fav.thumbnail.extension}`}
-              name={fav.name}
+              per={fav}
+              selectPer={selectPer}
               openModal={openModal}
             />
           </div>

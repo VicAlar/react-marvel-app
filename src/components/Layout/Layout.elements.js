@@ -7,16 +7,19 @@ export const Grid = styled.div`
   grid-gap: 15px;
   padding: 3.5rem 3rem;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1220px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 920px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 480px) {
-    display: block;
+  @media (max-width: 630px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

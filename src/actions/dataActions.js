@@ -32,7 +32,7 @@ export function getCharactersAction() {
                     'ts': ts,
                     'hash': hash,
                     'offset': o,
-                    'limit': '12',               
+                    'limit': '8',               
                 }
             }).then((response) => {
                 const res = response.data.data.results;
@@ -83,7 +83,7 @@ export function filterSearchAction(term) {
                     'apikey': publicKey,
                     'ts': ts,
                     'hash': hash,
-                    'limit': '12',               
+                    'limit': '8',               
                 }
             }).then((response) => {
                 const res = response.data.data.results;
