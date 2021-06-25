@@ -18,6 +18,7 @@ import {
   addFavoriteAction,
   removeFavoriteAction,
 } from "../../actions/dataActions";
+import {GlobalStyle} from '../../globalStyle';
 
 const Modal = ({ showModal, setShowModal, comics }) => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const Modal = ({ showModal, setShowModal, comics }) => {
 
   return (
     <>
+      <GlobalStyle open={showModal? 'hidden' : 'scroll'}/>
       {showModal ? (
         <Background ref={modalRef} onClick={closeModal}>
           <ModalWrapper>
