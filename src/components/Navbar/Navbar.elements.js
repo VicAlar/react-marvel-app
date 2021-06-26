@@ -36,10 +36,6 @@ export const InputContainer = styled.div`
   padding: 5px;
   width: 100%;
   border-left: 0.5px solid #e2e2e2;
-
-  &:hover {
-    box-shadow: 1px 1px 1px thistle;
-  }
 `;
 
 export const SearchIcon = styled(BsSearch)`

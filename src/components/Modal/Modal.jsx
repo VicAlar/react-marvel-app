@@ -8,8 +8,13 @@ import {
   NamePer,
   Lista,
   Description,
-  ComicsList,
+  ComicItem,
   FavIconFill,
+  CardWrapper,
+  ComicImg,
+  ComicContent,
+  ComicCharac,
+  ComicTitle,
 } from "./Modal.elements";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +23,7 @@ import {
   addFavoriteAction,
   removeFavoriteAction,
 } from "../../actions/dataActions";
-import {GlobalStyle} from '../../globalStyle';
+import { GlobalStyle } from "../../globalStyle";
 
 const Modal = ({ showModal, setShowModal, comics }) => {
   const dispatch = useDispatch();
@@ -39,7 +44,7 @@ const Modal = ({ showModal, setShowModal, comics }) => {
 
   return (
     <>
-      <GlobalStyle open={showModal? 'hidden' : 'scroll'}/>
+      <GlobalStyle open={showModal ? "hidden" : "scroll"} />
       {showModal ? (
         <Background ref={modalRef} onClick={closeModal}>
           <ModalWrapper>
@@ -57,7 +62,9 @@ const Modal = ({ showModal, setShowModal, comics }) => {
               />
             )}
             <ModalImg
-              imgurl={`${perSelect.thumbnail.path.replace('http', 'https')}.${perSelect.thumbnail.extension}`}
+              imgurl={`${perSelect.thumbnail.path.replace("http", "https")}.${
+                perSelect.thumbnail.extension
+              }`}
             />
             <ModalContent>
               <NamePer>{perSelect.name}</NamePer>
@@ -69,12 +76,23 @@ const Modal = ({ showModal, setShowModal, comics }) => {
               <h2>Lista de Comics</h2>
               <Lista>
                 {comics.length === 0 ? (
-                  <ComicsList key="1">No hay Comics disponibles</ComicsList>
+                  <ComicItem key="1">No hay Comics disponibles</ComicItem>
                 ) : (
                   comics[0].map((comic) => (
-                    <ComicsList key={comic.id}>
-                      <p>{comic.title}</p>
-                    </ComicsList>
+                    <ComicItem key={comic.id}>
+                      <CardWrapper>
+                        <ComicImg
+                          comicUrl={`${comic.thumbnail.path.replace(
+                            "http",
+                            "https"
+                          )}.${comic.thumbnail.extension}`}
+                        />
+                        <ComicContent>
+                          <ComicCharac>{perSelect.name}</ComicCharac>
+                          <ComicTitle>{comic.title}</ComicTitle>
+                        </ComicContent>
+                      </CardWrapper>
+                    </ComicItem>
                   ))
                 )}
               </Lista>

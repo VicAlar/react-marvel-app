@@ -3,8 +3,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { BsStarFill } from "react-icons/bs";
 
 export const Background = styled.div`
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.8);
     position: fixed;
     display: flex;
@@ -30,40 +30,40 @@ export const ModalWrapper = styled.div`
         height: 450px;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
         width: 600px;
-        height: 400px;
+        height: 600px;
+        display: block;
+        overflow: scroll;
     }
 
     @media (max-width: 660px) {
         width: 550px;
-        height: 400px;
+        height: 600px;
     }
 
     @media (max-width: 580px) {
-        width: 400px;
-        height: 600px;
-        grid-template-columns: none;
-        grid-template-rows: 1fr 1fr;
-    }
-
-    @media (max-width: 440px) {
-        width: 350px;
-    }
-
-    @media (max-width: 380px) {
-        width: 300px;
+        width: 450px;
         height: 550px;
     }
 
-    @media (max-width: 320px) {
-        width: 270px;
-        height: 500px;
+    @media (max-width: 500px) {
+        width: 400px;
+        height: 550px;
     }
 
-    @media (max-width: 280px) {
-        width: 240px;
-        height: 470px;
+    @media (max-width: 420px) {
+        width: 350px;
+        height: 400px;
+    }
+
+    @media (max-width: 360px) {
+        width: 300px;
+        height: 400px;
+    }
+
+    @media (max-width: 320px) {
+        width: 280px;
     }
 `;
 
@@ -98,35 +98,28 @@ export const NamePer = styled.h1`
 
 export const Description = styled.p`
     font-size: .9rem;
-    text-align: center;
+    text-align: justify;
     padding: 0 5px 0 5px;
 
     @media (max-width: 760px) {
-        font-size: .8rem;
+        font-size: 1rem;
+    }
+
+    @media (max-width: 420px) {
+        font-size: .9rem;
     }
 `;
 
 export const Lista = styled.ul`
     list-style: none;
-    width: 400px;
+    width: 100%;
     height: 100%;
+    padding: 0;
 `;
 
-export const ComicsList = styled.li`
-    margin-top: -10px;
+export const ComicItem = styled.li`
     font-size: .8rem;
-
-    @media (max-width: 760px) {
-        margin-left: 25px;
-    }
-
-    @media (max-width: 320px) {
-        margin-left: 50px;
-    }
-
-    @media (max-width: 280px) {
-        font-size: .7rem;
-    }
+    padding: .5em;
 `; 
 
 export const CloseModalIcon = styled(AiOutlineClose)`
@@ -153,4 +146,61 @@ export const FavIconFill = styled(BsStarFill)`
     height: 32px;
     padding: 0;
     z-index: 10;
+`;
+
+export const CardWrapper = styled.div`
+    width: 300px;
+    height: 125px;
+    display: grid;
+    grid-template-columns: 1fr 75%;
+    background: #FFF;
+
+    @media (max-width: 768px) {
+        width: 75%;
+    }
+`;
+
+export const ComicImg = styled.div`
+    background-image: url(${props => props.comicUrl});
+    width: 125px;
+    height: 125px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+`;
+
+export const ComicContent = styled.div`
+    display: block;
+    margin: .5em;
+`;
+
+export const ComicCharac = styled.h2`
+    font-size: 1rem;
+    color: #212121;
+    margin: 0;
+
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 580px) {
+        font-size: 1rem;
+    }
+
+    @media (max-width: 360px) {
+        font-size: 0.8rem;
+    }
+`;
+
+export const ComicTitle = styled.h3`
+    font-size: .8rem;
+    color: #424040;
+
+    @media (max-width: 580px) {
+        font-size: .9rem;
+    }
+
+    @media (max-width: 360px) {
+        font-size: 0.6rem;
+    }
 `;
