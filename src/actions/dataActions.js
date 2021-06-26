@@ -123,7 +123,8 @@ export function getCharacterIdAction(personaje) {
                 params: {
                     'apikey': publicKey,
                     'ts': ts,
-                    'hash': hash               
+                    'hash': hash,
+                    'limit': '8'               
                 }
             }).then((response) => {
                 const res = response.data.data.results;
