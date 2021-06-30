@@ -22,12 +22,17 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addFavoriteAction,
   removeFavoriteAction,
+  getComicAction
 } from "../../actions/dataActions";
+
 import { GlobalStyle } from "../../globalStyle";
+
+import { useHistory } from 'react-router-dom'
 
 const Modal = ({ showModal, setShowModal, comics }) => {
   const dispatch = useDispatch();
   const modalRef = useRef();
+  const history = useHistory();
 
   const perSelect = useSelector((state) => state.personajes.personajeSelect);
   const favorites = useSelector((state) => state.personajes.personajesFav);
@@ -41,6 +46,11 @@ const Modal = ({ showModal, setShowModal, comics }) => {
       setShowModal(false);
     }
   };
+
+  const comicRedirect = comic => {
+    dispatch( getComicAction(comic))
+    history.push(`/comic/${comic.id}`)
+  }
 
   return (
     <>
@@ -82,6 +92,7 @@ const Modal = ({ showModal, setShowModal, comics }) => {
                     <ComicItem key={comic.id}>
                       <CardWrapper>
                         <ComicImg
+                          onClick={() => comicRedirect(comic)}
                           comicUrl={`${comic.thumbnail.path.replace(
                             "http",
                             "https"
