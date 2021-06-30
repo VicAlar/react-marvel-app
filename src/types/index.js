@@ -13,3 +13,5 @@ export const OBTENER_COMIC_ERROR = 'OBTENER_COMIC_ERROR';
 
 export const ADD_FAV = 'ADD_FAV';
 export const REMOVE_FAV = 'REMOVE_FAV';
+
+export const COMIC_INFO = 'COMIC_INFO';

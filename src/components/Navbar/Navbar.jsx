@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import {
   getSearchTermAction,
   filterSearchAction,
+  getCharactersAction
 } from "../../actions/dataActions";
 
 const Navbar = () => {
@@ -38,12 +39,12 @@ const Navbar = () => {
   const { pathname } = location;
 
   const splitLocation = pathname.split("/");
-
+ 
   return (
     <>
       <Nav>
         <Logo to="/">
-          <Marvel />
+          <Marvel onClick={() => dispatch(getCharactersAction())}/>
         </Logo>
 
         <InputContainer>
